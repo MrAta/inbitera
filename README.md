@@ -1,7 +1,7 @@
 <h2>description:</h2>
 wow! finally me and mehran (special thank to dear mehran for his great work on this project) finished this cery cool project.
 ok. lets describe project:
-in fact this projects is social network which users are allowed to post(or maybe tweet :|) about films which provided for them. yeah~ films are provided in this social network and each film has a profile page contains film info such as: cover, imdb link , director , writer , actors, synopsis, review and so on. now user can write his post about a film in its profile page. then this post will apear in user profile page and also user followers time line!
+in fact this projects is social network which users are allowed to post(or maybe tweet :|) about films which provided for them. yes!films are provided in this social network and each film has a profile page contains film info such as: cover, imdb link , director , writer , actors, synopsis, review and so on. now user can write his post about a film in its profile page. then this post will apear in user profile page and also user followers time line!
 like most common social networks these features are available: follow or unfollow users , comment on a post , like or dislike posts and comments.
 <h2>Impelementaion:</h2>
 technically we wrote this web application in <a href="https://www.djangoproject.com/">python django web framework</a>.
