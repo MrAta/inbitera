@@ -39,6 +39,6 @@ and its address will be : <a href="http://inbitera.com">http://inbitera.com</a>
 <strong>Ata:</strong> afbcesh91@gmail.com
 </li>
 <li>
-<strong>Meran:</strong>mehrantorki95@gmail.com
+<strong>Meran:</strong> mehrantorki95@gmail.com
 </li>
 </ul>
