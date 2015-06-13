@@ -1,0 +1,42 @@
+<aside class="col col-md-3 col-sm-3 col-xs-4">
+    {%if request.user.is_authenticated%}
+        <section class="panel panel-primary">
+            <h3 class="panel-heading"><i class="icon icon-link"></i>دنبال کنید</h3>
+            <div class="list-group">
+                {%for user in users_follow%}
+                    <div class="list-group-item">
+                        <img src="{{MEDIA_URL}}{{user.user_image.pic}}" class="img-circle avatar" alt=""/>
+                        <a href="/user/{{user.username}}"><span class="user-full-name">{{user.first_name}} {{user.last_name}}</span></a>
+                        <span type="button" class="btn btn-default follow follow-btn" user-id="{{user.id}}">
+                            <i class="icon icon-link"></i>
+                            <span>دنبال کردن</span>
+                        </span>
+                    </div>
+                {%endfor%}
+            </div>
+        </section>
+    {%endif%}
+        <section class="panel panel-primary">
+            <h3 class="panel-heading"><i class="icon icon-star"></i>محبوب ترین ها</h3>
+            <div class="list-group">
+                {%for film in top_films%}
+                    <a href="/film/{{film.id}}" class="list-group-item">
+                        <img src="{{MEDIA_URL}}{{film.pic}}" class="avatar" alt=""/>
+                        <span class="film-title">{{film.name}}</span>
+                        <div class="star-rating fixed fixed-{{film.rate}} smaller">
+                            <div class="half-star left off"></div>
+                            <div class="half-star right off"></div>
+                            <div class="half-star left off"></div>
+                            <div class="half-star right off"></div>
+                            <div class="half-star left off"></div>
+                            <div class="half-star right off"></div>
+                            <div class="half-star left off"></div>
+                            <div class="half-star right off"></div>
+                            <div class="half-star left off"></div>
+                            <div class="half-star right off"></div>
+                        </div>
+                    </a>
+                {%endfor%}
+            </div>
+        </section>
+</aside>

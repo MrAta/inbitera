@@ -1,0 +1,59 @@
+.list-group .list-group-item img
+{
+    float: right;
+}
+
+.list-group .list-group-item .user-full-name
+{
+    vertical-align: top;
+    margin-top: 1.2em;
+    padding-right: 2%;
+    display: inline-block;
+}
+
+.list-group .list-group-item .film-title
+{
+    overflow: auto;
+    padding-top: 2%;
+    padding-right: 2%;
+    display: block;
+}
+
+.list-group .list-group-item .follow
+{
+    margin-top: 0.7em;
+    vertical-align: sub;
+    padding-right: 2%;
+    overflow: auto;
+    font-size: 0.7em;
+    font-family: 'BYekan', sans-serif;
+}
+
+.list-group .list-group-item .follow:hover
+{
+    color: #ffffff;
+}
+
+.list-group .list-group-item .user-full-name, .list-group .list-group-item .film-title
+{
+    font-size: 80%;
+    font-family: 'BYekan', sans-serif;
+}
+
+.list-group-item
+{
+    min-height: 3.5em;
+    padding: 0.25em 0.5em;
+}
+
+
+@media screen and (max-width: 579px)
+{
+    aside section.panel
+    {
+        width: 55%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

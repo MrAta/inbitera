@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>پروفایل کاربر</title>
+    {% load staticfiles %}
+    {% load users_filters %}
+    <base href="http://127.0.0.1:8000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/comments.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/star-rating.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
+</head>
+<body>
+<script src="{% static 'js/resize_text.js' %}"></script>
+{% include 'header.html' %}
+<div id="profile-cover">
+    {% if owner.user_cover %}
+        <img src="{{ MEDIA_URL }}{{ owner.user_cover.pic }}" class="cover"/>
+    {% else %}
+        <img src="{% static 'img/default_user_cover.jpg' %}" class="cover"/>
+    {% endif %}
+    {% if same_user %}
+        <form action="/upload_pic/" enctype="multipart/form-data" method="POST" class="pic-upload-form">
+            {% csrf_token %}
+            <div>
+                <img src="{% static 'img/camera.png' %}" class="upload-pic"/>
+                <input type="file" name="pic" accept="image/gif, image/png, image/jpg, image/jpeg">
+            </div>
+        </form>
+    {% endif %}
+</div>
+<div id="user-statistics">
+    <div class="container">
+        <div id="stats">
+            <div class="col col-md-10">
+            {% if request.user.is_authenticated and not same_user %}
+                <button type="button" class="btn btn-primary follow-btn" user-id="{{ owner.id }}">
+                    {% if following %}
+                        <i class="icon icon-unlink"></i>
+                        <span>لغو دنبال کردن</span>
+                    {% else %}
+                        <i class="icon icon-link"></i>
+                        <span>دنبال کردن</span>
+                    {% endif %}
+                </button>
+            {% endif %}
+                <ul>
+                    <li class="stat-active"><span class="amount">{{ owner.posts.all | length }}</span><br/><span class="text">نوشته</span></li>
+                    <li><span class="amount">{{ owner.posts.all | length }}</span><br/><span class="text">فیلم ها در یک نگاه</span></li>
+                    <li><span class="amount">{{ followers | length }}</span><br/><span class="text">دنبال کننده</span></li>
+                    <li><span class="amount">{{ owner.following.all | length }}</span><br/><span class="text">دنبال شده</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <aside class="col col-md-3 col-sm-5 col-xs-10 user-info">
+        <div class="user-image">
+            {% if owner.user_image %}
+            <img src="{{ MEDIA_URL }}{{ owner.user_image.pic }}" alt="user profile image"/>
+            {% else %}
+                <img src="{% static 'img/default_user_image.jpg' %}" alt="user profile image"/>
+            {% endif %}
+            {% if same_user %}
+                <form action="/upload_pic/" enctype="multipart/form-data" method="POST" class="pic-upload-form">
+                    {% csrf_token %}
+                    <div>
+                        <img src="{% static 'img/camera.png' %}" class="upload-pic"/>
+                        <input type="file" name="pic" accept="image/gif, image/png, image/jpg, image/jpeg">
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+        <div class="detail">
+            <div class="fullname-job">
+                <span id="user-full-name">{{ owner.first_name }} | {{ owner.last_name }}</span>
+                <br/>
+                <span id="user-job">
+                    {% if owner.job %}
+                        <span class="editable" my_holder="شغل">{{ owner.job }}</span>
+                    {% else %}
+                        <span class="placeholder editable" my_holder="شغل">شغل</span>
+                    {% endif %}
+                </span>
+            </div>
+            <div id="short-description">
+                <i class="icon icon-quote-right"></i>
+                {% if owner.description %}
+                    <span class="editable" my_holder="درباره خودتون؟">{{ owner.description }}</span>
+                {% else %}
+                    <span class="placeholder editable" my_holder="درباره خودتون">درباره خودتون</span>
+                {% endif %}
+            </div>
+           <div id="list-info">
+               <ul>
+                   <li id="living_place">
+                       <i class="icon icon-map-marker"></i>
+                       {% if owner.place %}
+                           <span class="editable" my_holder="محل زندگی؟">{{ owner.place }}</span>
+                       {% else %}
+                           <span class="placeholder editable" my_holder="محل زندگی؟">محل زندگی؟</span>
+                       {% endif %}
+                   </li>
+                   <li>
+                       <i class="icon icon-time"></i>
+                        تولد:
+                       {% if owner.birth_date %}
+                           <span class="time">{{ persian_birth_date.3|escape }}  {{ persian_birth_date.0|escape }}/{{ persian_birth_date.1|escape }}/{{ persian_birth_date.2|escape }}</span>
+                       {% else %}
+                           <span class="placeholder time">تاریخ تولد</span>
+                       {% endif %}
+                   </li>
+                   <li id="education">
+                       <i class="icon icon-book"></i>
+                       {% if owner.education %}
+                           <span class="editable" my_holder="تحصیلات">{{ owner.education }}</span>
+                       {% else %}
+                           <span class="placeholder editable" my_holder="تحصیلات">تحصیلات</span>
+                       {% endif %}
+                   </li>
+               </ul>
+           </div>
+        </div>
+    </aside>
+    <main class="col col-md-9 col-sm-9 col-xs-8">
+        <div id="user-posts">
+            {% for post in owner.posts.all %}
+                <article class="col col-md-12 col-sm-12 col-xs-12 post" post-id="{{post.id}}">
+                <aside class="col col-md-1 col-sm-1 col-xs-3">
+                    <div class="date">
+                        <span class="day">{{ post.pub_date|split:' '|indexer:0 }}</span>
+                        <br/>
+                        <span class="month">{{ post.pub_date|split:' '|indexer:1 }}</span>
+                        <br/>
+                        <span class="year">{{ post.pub_date|split:' '|indexer:2 }}</span>
+                    </div>
+                </aside>
+                <div class="col col-md-11 col-sm-11 col-xs-9 post-content">
+                    <div class="col col-md-3 col-sm-3 col-xs-12 post-image-info">
+                        <div class="post-image" style="background-image: url('{{MEDIA_URL}}{{post.film.pic}}')"></div>
+                        <div class="hover-film-info">
+                            <h3 class="col col-md-12">{{post.film.name}}</h3>
+                            <h4 class="col col-md-12">{{post.film.director}}، {{post.film.year}}</h4>
+                            <h5 class="col col-md-12">محصول {{post.film.country}}</h5>
+                            <div class="star-rating fixed fixed-{{post.film.rate}} smaller">
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-9 col-sm-9 col-xs-12 post-text">
+                        <p><i class="icon icon-quote-right"></i>{{post.text}}</p>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12 post-footer">
+                        <footer>
+                            <div class="likes">
+                                <a href="#">
+                                    {% if request.user in post.liked_users.all %}
+                                        <i class="icon icon-heart-empty"></i>
+                                    {% else %}
+                                        <i class="icon icon-heart"></i>
+                                    {% endif %}
+                                    <span class="num-of-likes">{{post.liked_users.all | length}}</span>
+                                    <span>بار</span>
+                                </a>
+                            </div>
+                            <div class="show-comments">
+                                <a href="#">
+                                    <i class="icon icon-comments"></i>
+                                    <span class="num-of-comments">{{post.comments.all | length}}</span>
+                                    <span>نظر</span>
+                                </a>
+                            </div>
+                            <div class="star-rating fixed fixed-{{post.rate}}">
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                                <div class="half-star left off"></div>
+                                <div class="half-star right off"></div>
+                            </div>
+                        </footer>
+                    </div>
+                    <div class="col col-md-12 col-sm-12 col-xs-12 comments">
+                            <div class="col col-md-12 col-sm-12 col-xs-12 comment your-comment">
+                                <img src="{{MEDIA_URL}}{{request.user.user_image.pic}}" class="avatar img-circle"/>
+                                <input type="text" class="form-control" placeholder="دیدگاه شما چیست ؟">
+                                <button type="submit" first-name='{{request.user.first_name}}'
+                                        last-name='{{request.user.last_name}}' class="btn btn-primary submit-comment">ثبت نظر</button>
+                            </div>
+                            {% for comment in post.comments.all %}
+                            <div class="col col-md-12 col-sm-12 col-xs-12 comment{% if request.user == comment.author %} editable{% endif %}" comment-id="{{comment.id}}">
+                                <img src="{{ MEDIA_URL }}{{ comment.author.user_image.pic }}" class="avatar img-circle"/>
+                                <a href="/user/{{ comment.author.username }}"><span class="author">{{ comment.author.first_name }} {{ comment.author.last_name }}</span></a>
+                                <span class="light-black date">{{ comment.pub_date }}</span>
+                                <footer>
+                                    <div class="likes">
+                                        <a href="#">
+                                            <i class="icon
+                                            {% if request.user in comment.liked_users.all %}
+                                                icon-heart-empty
+                                            {% else %}
+                                                icon-heart
+                                            {% endif %}
+                                            "></i>
+                                            <span class="num-of-likes">{{ comment.liked_users.all | length }}</span>
+                                            <span>بار</span>
+                                        </a>
+                                    </div>
+                                    {% if comment.author.username == request.user.username %}
+                                        <i class="icon icon-remove"></i>
+                                    {% endif %}
+                                </footer>
+                                <div class="comment-text">{{ comment.text }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    <div class="rating-number">{{post.rate|multiply:2}}</div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div id="favorites">
+            {% for post in owner.posts.all %}
+                <div class="col col-md-4 col-sm-4 col-xs-12 single-film">
+                <img src="{{MEDIA_URL}}{{post.film.cover}}"/>
+                <h1 class="film-title"><a href="/film/{{film.id}}">{{post.film.name}}</a></h1>
+                <h3 class="film-info">{{post.film.director}}، {{post.film.year}}</h3>
+                <div class="star-rating fixed fixed-{{post.film.rate}} smaller">
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="followers">
+            {% for follow in followers %}
+            <div class="col col-md-3 col-sm-3 col-xs-6 single-user">
+                <div>
+                    <div>
+                        <a href="/user/{{follow.username}}"><img src="{{MEDIA_URL}}{{follow.user_image.pic}}"/></a>
+                        <div class="user-full-name">{{follow.first_name}} {{follow.last_name}}</div>
+                        <hr/>
+                        <p>{{follow.description}}</p>
+                        {% if request.user.is_authenticated and request.user != follow %}
+                            <button type="button" class="btn btn-default follow-btn" user-id="{{follow.id}}">
+                                {% if follow in request.user.following.all %}
+                                    <i class="icon icon-unlink"></i>
+                                    <span>لغو دنبال کردن</span>
+                                {% else %}
+                                    <i class="icon icon-link"></i>
+                                    <span>دنبال کردن</span>
+                                {% endif %}
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="following">
+            {% for follow in owner.following.all %}
+            <div class="col col-md-3 col-sm-3 col-xs-6 single-user">
+                <div>
+                    <div>
+                        <a href="/user/{{follow.username}}"><img src="{{MEDIA_URL}}{{follow.user_image.pic}}"/></a>
+                        <div class="user-full-name">{{follow.first_name}} {{follow.last_name}}</div>
+                        <hr/>
+                        <p>{{follow.description}}</p>
+                        {% if request.user.is_authenticated and request.user != follow %}
+                            <button type="button" class="btn btn-default follow-btn" user-id="{{follow.id}}">
+                                {% if follow in request.user.following.all %}
+                                    <i class="icon icon-unlink"></i>
+                                    <span>لغو دنبال کردن</span>
+                                {% else %}
+                                    <i class="icon icon-link"></i>
+                                    <span>دنبال کردن</span>
+                                {% endif %}
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% include 'sidebar.html' %}
+    <div id="dialog-boxes">
+        <div class="chat-box">
+            <div class="title">
+                <i class="icon icon-remove"></i>محمد پناه آذری
+            </div>
+            <div class="dialog-content">
+                <div class="dialog-text right">
+                    <div class="text">سلام، خوبی؟</div>
+                </div>
+                <div class="dialog-text left">
+                    <img src="{% static 'img/second_user.jpeg' %}"/>
+                    <div class="text">ممنون ، تو خوبی ؟</div>
+                </div>
+            </div>
+            <textarea rows="1"></textarea>
+        </div>
+    </div>
+</div>
+<aside id="chat-side-bar">
+    <div id="users-list">
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/second_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">عباس تقوایی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/third_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">کامران فارابی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/fourth_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status online"></div>
+                <div class="chat-user-name">حسین ضرابی</div>
+            </div>
+        </div>
+    </div>
+</aside>
+<footer id="footer">
+    <ul id="social">
+        <li><i class="icon icon-facebook-sign"></i></li>
+        <li><i class="icon icon-google-plus-sign"></i></li>
+        <li><i class="icon icon-flickr"></i></li>
+        <li><i class="icon icon-pinterest-sign"></i></li>
+        <li><i class="icon icon-twitter-sign"></i></li>
+        <li><i class="icon icon-tumblr-sign"></i></li>
+        <li><i class="icon icon-dribbble"></i></li>
+    </ul>
+    <ul id="footer-links">
+        <li><i class="icon icon-phone-sign"></i><span>تماس با ما</span></li>
+        <li><i class="icon icon-info-sign"></i><span>درباره ما</span></li>
+        <li><i class="icon icon-shield"></i><span>قوانین</span></li>
+        <li><i class="icon icon-map-marker"></i><span>نقشه سایت</span></li>
+        <li><i class="icon icon-eye-close"></i><span>حریم شخصی</span></li>
+    </ul>
+</footer>
+<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'js/general.js' %}"></script>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/comments.js' %}"></script>
+<script src="{% static 'js/chat.js' %}"></script>
+<script src="{% static 'js/user_profile.js' %}"></script>
+<script src="{% static 'js/star-rating.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/edit-comment-post.js' %}"></script>
+{% if same_user %}
+    <script src="{% static 'js/upload_pic.js' %}"></script>
+    <script src="{% static 'js/edit_profile.js' %}"></script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+section .list-group .star-rating
+{
+    margin-right: 2%;
+}
+
+.star-rating
+{
+    direction: ltr;
+    display: inline-block;
+}
+
+.star-rating.smaller .half-star
+{
+    height: 0.8em;
+    width: 0.4em;
+}
+
+.star-rating .half-star
+{
+    opacity: 0.7;
+    float: left;
+    height: 1.5em;
+    width: 0.8em;
+    background-size: 100% 100%;
+}
+
+.star-rating .half-star.right.off
+{
+    background-image: url('../../static/img/right-off.png');
+}
+
+.star-rating .half-star.left.off
+{
+    background-image: url('../../static/img/left-off.png');
+}
+
+.star-rating .half-star.right.on,
+.star-rating:not(.fixed) .half-star.right:hover,
+.star-rating:not(.fixed) .half-star.right:hover ~ .half-star.right,
+.star-rating:not(.fixed) .half-star.left:hover ~ .half-star.right
+{
+    background-image: url('../../static/img/right-on.png');
+}
+
+.star-rating .half-star.left.on,
+.star-rating:not(.fixed) .half-star.left:hover,
+.star-rating:not(.fixed) .half-star.right:hover ~ .half-star.left,
+.star-rating:not(.fixed) .half-star.left:hover ~ .half-star.left
+{
+    background-image: url('../../static/img/left-on.png');
+}

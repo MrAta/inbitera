@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'BMitra';
+    src: url('../font/farsi_fonts/BMitra.eot');
+    src: url('../font/farsi_fonts/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../font/farsi_fonts/BMitra.woff') format('woff'),
+         url('../font/farsi_fonts/BMitra.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BYekan';
+    src: url('../font/farsi_fonts/BYekan.eot');
+    src: url('../font/farsi_fonts/BYekan.eot?#iefix') format('embedded-opentype'),
+         url('../font/farsi_fonts/BYekan.woff') format('woff'),
+         url('../font/farsi_fonts/BYekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

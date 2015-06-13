@@ -1,0 +1,506 @@
+.container main
+{
+    float: right;
+}
+
+/* <cover> */
+
+#profile-cover .cover
+{
+    width: 100%;
+    border-radius: 0;
+}
+
+#profile-cover
+{
+    z-index: 3;
+    position: relative;
+    box-sizing: content-box;
+    font-size: 80%;
+    overflow: hidden;
+}
+
+.pic-upload-form
+{
+    position: absolute;
+    bottom: 1%;
+    right: 0.2%;
+    width: 2.5em;
+    height: 2em;
+}
+
+.pic-upload-form .upload-pic
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.pic-upload-form > div
+{
+    width: 100%;
+    height: 100%;
+}
+
+.pic-upload-form input[type='file']
+{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#left-bar
+{
+    left: 1%;
+}
+
+/* </cover> */
+
+/* <statistics> */
+
+#user-statistics
+{
+    height: 4em;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+#user-statistics .container
+{
+    height: 100%;
+}
+
+#stats
+{
+    height: 100%;
+    padding-right: 1em;
+}
+
+#stats ul
+{
+    padding: 0.3em 0;
+    height: 100%;
+    display: inline-block;
+    float: right;
+    margin: 0;
+    position: relative;
+    right: 5%;
+}
+
+#stats ul li
+{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    color: #7c7c7c;
+    font-family: 'BYekan', sans-serif;
+}
+
+#stats ul li:hover
+{
+    cursor: pointer;
+    color: #000000;
+}
+
+#stats ul li:hover, #stats ul li.stat-active
+{
+    border-bottom: 5px solid #5E2438;
+}
+
+#stats ul li .amount
+{
+    color: #5E2438;
+    font-size: 1.2em;
+}
+
+#stats ul li .text
+{
+    color: inherit;
+    font-size: 0.8em;
+}
+
+.follow-btn
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    margin-top: 1em;
+}
+
+.follow-btn.clicked, .btn:focus
+{
+    background-color: #5E2438;
+    outline: none;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active
+{
+    color: #ffffff;
+}
+
+#stats .follow-btn
+{
+    float: left;
+}
+
+#stats > div
+{
+    padding-right: 0;
+}
+
+/* <statistics> */
+
+/* <main> */
+
+main + aside
+{
+    margin-top: 1.5em;
+}
+
+aside.user-info
+{
+    text-align: center;
+}
+
+#user-posts, #favorites, #followers, #following
+{
+    transition: none;
+}
+
+#favorites, #followers, #following
+{
+    margin-top: 1.5em;
+}
+
+#favorites .single-film
+{
+    position: relative;
+    padding: 0.2em;
+}
+
+#favorites .single-film img
+{
+    opacity: 0.9;
+}
+
+#favorites .single-film:hover img
+{
+    opacity: 0.2;
+}
+
+#favorites .single-film:hover h1,
+#favorites .single-film:hover h3
+{
+    opacity: 1;
+}
+
+#favorites .single-film h1
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 1.7em;
+    color: #4c4c4c;
+    top: 10%;
+    right: 7%;
+    position: absolute;
+    opacity: 0;
+}
+
+#favorites .single-film h3
+{
+    opacity: 0;
+    font-size: 1.2em;
+    color: #4c4c4c;
+    top: 33%;
+    right: 8%;
+    position: absolute;
+}
+
+#favorites .single-film .star-rating.smaller
+{
+    position: absolute;
+    bottom: 6%;
+    left: 3%;
+    transform-origin: 0 100%;
+}
+
+.single-user, .single-film
+{
+    float: right;
+}
+
+.single-user
+{
+    padding: 0;
+    text-align: center;
+}
+
+.single-user > div
+{
+    padding: 0.3em;
+}
+
+.single-user > div > div
+{
+    padding: 1em 1em 2.2em 1em;
+    border-radius: 100px;
+    background-color: #EAEAEA;
+}
+
+.single-user a img
+{
+    border-radius: 50%;
+}
+
+.single-user .user-full-name
+{
+    margin-top: 0.3em;
+    font-family: 'BYekan', sans-serif;
+}
+
+.single-user hr
+{
+    border-top-color: #ffffff;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.single-user p
+{
+    color: #888888;
+}
+
+.single-user button
+{
+    border-radius: 1em;
+    width: 100%;
+}
+
+/* </main> */
+
+/* <aside> */
+
+.user-info
+{
+    z-index: 12;
+    position: relative;
+    float: right;
+}
+
+.user-image
+{
+    display: inline-block;
+    z-index: 6;
+    position: relative;
+    top: -6.6em;
+    height: 13.2em;
+    border-radius: 0.8em;
+    border: 1px solid #ffffff;
+    background-color: #F8F8F8;
+    transition: all 0.5s;
+}
+
+.user-image:hover
+{
+    box-shadow: 0 0 0.8em 0 rgba(0, 0, 0, 0.5);
+}
+
+.user-image form
+{
+    right: -8%;
+    bottom: 2%;
+}
+
+.user-image img
+{
+    padding: 0.3em;
+}
+
+.user-info .detail
+{
+    padding: 2% 3% 0 0;
+    position: relative;
+    top: -6.6em;
+}
+
+.user-info .detail div li
+{
+    height: 1.5em;
+    margin-top: 0.8em;
+}
+
+.fullname-job span ::-webkit-input-placeholder
+{
+    color: #000000;
+}
+
+#short-description span
+{
+    vertical-align: top;
+    display: block;
+}
+
+#short-description > i
+{
+    float: right;
+}
+
+#short-description span textarea
+{
+    resize: vertical;
+    height: 5em;
+    width: 100%;
+    vertical-align: top;
+}
+
+#short-description span textarea,
+#short-description span textarea:focus
+{
+    outline: none;
+    background-color: inherit;
+    border: none;
+}
+
+#list-info li span input, .fullname-job span input,
+#list-info li span input:focus, .fullname-job span input:focus
+{
+    height: 1.5em;
+    outline: none;
+    background-color: inherit;
+    border: none;
+}
+
+.user-info .detail div span
+{
+    cursor: pointer;
+}
+
+#short-description
+{
+    margin-top: 0.5em;
+    line-height: 1.3em;
+    text-align: justify;
+}
+
+.user-info .detail .fullname-job
+{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.placeholder
+{
+    opacity: 0.5;
+}
+
+#user-full-name, #user-job
+{
+    padding: 0.2em;
+    margin-bottom: 0.2em;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#user-full-name
+{
+    color: #ffffff;
+    font-family: 'BYekan', sans-serif;
+    font-size: 1.5em;
+}
+
+#user-job
+{
+    color: #000;
+}
+
+#list-info
+{
+    text-align: right;
+}
+
+#list-info ul
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    padding-right: 0;
+    padding-top: 0.8em;
+}
+
+/* </aside> */
+
+@media all and (max-width: 990px){
+
+    #list-info, #short-description
+    {
+        text-align: center;
+    }
+
+    #left-bar
+    {
+        left: 1% !important;
+    }
+
+    aside.user-info
+    {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    aside.user-info .user-image
+    {
+        border-color: #dedede;
+        top: 1em;
+    }
+
+    #user-full-name
+    {
+        color: #080808;
+    }
+
+    #user-job
+    {
+        color: #6d676a;
+    }
+
+    .user-info .detail
+    {
+        text-align: center;
+        top: 1em;
+    }
+
+    #short-description
+    {
+        padding-top: 1em;
+    }
+
+    .user-info .detail > a
+    {
+        position: static;
+    }
+
+    #user-statistics .container #stats
+    {
+        margin-right: 0;
+    }
+
+}
+
+@media all and (max-width: 579px) {
+
+    .container main
+    {
+        width: 100%;
+    }
+
+    main + aside
+    {
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: auto;
+        margin-right: auto;
+        width: 70% !important;
+    }
+}

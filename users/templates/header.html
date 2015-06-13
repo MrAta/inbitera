@@ -1,0 +1,87 @@
+{% load staticfiles %}
+
+<header id="top-header">
+
+    <!--# type1 = add comment-->
+
+    <!--# type2 = like comment-->
+
+    <!--# type3 = like post-->
+
+    <!--# type4 = follow-->
+
+    <div class="container">
+        <div id="menu-show">
+            <i class="icon icon-list-alt"></i>
+        </div>
+        <div id="menu-items">
+            <ul>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="/time-line/"><span style="background-color: #9d0a21">{{request.user.first_name}}</span></a>
+                    <div class="hover-background"></div>
+                    <i class="icon icon-caret-up"></i>
+                </li>
+                <li>
+                    <a href="/user/{{request.user.username}}">پروفایل کاربری</a>
+                    <div class="hover-background"></div>
+                    <i class="icon icon-caret-up"></i>
+                </li>
+                <li>
+                    <a href="#" id="show-notifications">پیغام ها (<span id="num-of-notifications">{{request.user.received_notifications.all | length}}</span>)</a>
+                    <div class="hover-background"></div>
+                    <i class="icon icon-caret-up"></i>
+                    <div id="notifications">
+                        {% for notification in request.user.received_notifications.all %}
+                            <div class="notification" notification-id="{{notification.id}}">
+                                <img src="{{MEDIA_URL}}{{notification.from_user.user_image.pic}}" class="avatar img-circle"/>
+                                <div>
+                                    <a href="/user/{{notification.from_user.username}}">{{notification.from_user.first_name}} {{notification.from_user.last_name}}</a>
+                                    {% if notification.type == 1 %}
+                                    <a href="/post/{{notification.post.id}}"><span>در مورد نوشته شما نظر داده است.</span></a>
+                                    {% else %}
+                                    {% if notification.type == 2 %}
+                                    <a href="/post/{{notification.post.id}}"><span>نظر شما را پسندیده است.</span></a>
+                                    {% else %}
+                                    {% if notification.type == 3 %}
+                                    <a href="/post/{{notification.post.id}}"><span>نوشته شما را پسندیده است.</span></a>
+                                    {% else %}
+                                    <a href="/user/{{notification.from_user.username}}"><span>شما را دنبال می کند.</span></a>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                                <span class="date">{{notification.date}}</span>
+                                <i class="icon icon-remove"></i>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li>
+                    <a href="user/logout/">خروج</a>
+                    <div class="hover-background"></div>
+                    <i class="icon icon-caret-up"></i>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/"><span>خانه</span></a>
+                    <div class="hover-background"></div>
+                    <i class="icon icon-caret-up"></i>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div id="left-bar">
+            <form action="/search/" method="GET" name="search-form" id="search-form">
+                <div id="search-bar">
+                    <i class="icon icon-film" id="search-type"></i>
+                    <input type="text" id="search-input" placeholder="برای جستجو در کاربران روی عکص مقابل کلیک کنید ..." name="search-text">
+                    <div id="search-results" type="film"></div>
+                </div>
+                <button class="btn" type="submit">
+                    <i class="icon icon-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>

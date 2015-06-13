@@ -1,0 +1,358 @@
+/* fonts */
+
+#menu-items
+{
+    font-size: 80%;
+}
+
+.notification .date
+{
+    font-family: 'BMitra', sans-serif;
+    font-size: 110%;
+}
+
+/* ** */
+
+#top-header
+{
+    opacity: 0.8;
+    z-index: 16;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #15586E;
+}
+
+#top-header:hover
+{
+    opacity: 1;
+}
+
+/* <menu-items> */
+
+#menu-items
+{
+    font-family: 'BYekan', sans-serif;
+    padding-right: 1%;
+    height: 3.2em;
+    float: right;
+    transition: none;
+    display: inline-block;
+}
+
+#menu-items ul
+{
+    height: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+#menu-items ul li
+{
+    padding: 0.7em;
+    text-align: center;
+    display: inline-block;
+    height: 100%;
+    color: #ffffff;
+    transition: all 0.2s;
+    position: relative;
+}
+
+#menu-items ul li a
+{
+    vertical-align: text-top;
+    z-index: 6;
+    color: inherit;
+    position: relative;
+}
+
+#menu-items ul li > i
+{
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translate(-50%, 0);
+    display: none;
+}
+
+#menu-items ul li.activated > i, #menu-items ul li:hover > i
+{
+    display: inline;
+}
+
+#menu-items ul li .hover-background
+{
+    transition: all 0.3s;
+    height: 0;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    background-color: #ffffff;
+}
+
+#menu-items ul li:hover
+{
+    color: #000000;
+}
+
+#menu-items ul li:hover .hover-background
+{
+    height: 100%;
+}
+
+#menu-items ul li.activated
+{
+    color: #000;
+    background-color: #ffffff;
+}
+
+/* </menu-items> */
+
+/* <left-bar> */
+
+#left-bar
+{
+    font-size: 80%;
+    padding-left: 0.1%;
+    width: 38%;
+    display: inline-block;
+    float: left;
+    left: 22%;
+    position: relative;
+    text-align: left;
+}
+
+#left-bar button, #left-bar button:focus
+{
+    padding: 0.2em;
+    border: none;
+}
+
+#search-bar
+{
+    width: 85%;
+    display: inline-block;
+    position: relative;
+}
+
+#left-bar input
+{
+    font-family: 'BYekan', sans-serif;
+    width: 100%;
+    height: 2em;
+    transition: all 1s;
+    padding-right: 0.8em;
+    vertical-align: middle;
+    border: 0;
+    outline: 0;
+    border-radius: 0.3em;
+}
+
+#left-bar input:focus
+{
+    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 0.7);
+}
+
+/* </left-bar> */
+
+/* <mobile-menu> */
+
+#menu-show
+{
+    font-size: 2em;
+    margin-top: 1vh;
+    display: none;
+    text-align: center;
+}
+
+#menu-show i
+{
+    vertical-align: text-top;
+}
+
+#menu-show i:hover
+{
+    cursor: pointer;
+}
+
+/* </mobile-menu> */
+
+/* <notifications> */
+
+#notifications
+{
+    z-index: 8;
+    background-color: #ffffff;
+    text-align: right;
+    width: 500%;
+    transition: none;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    border: 1px solid #eee;
+    border-top-width: 0;
+}
+
+#num-of-notifications
+{
+    transition: none;
+}
+
+.notification
+{
+    transition: none;
+    position: relative;
+    padding: 1%;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    height: 4.5em;
+}
+
+.notification:hover
+{
+    background-color: #F5F5F5;
+}
+
+.notification img
+{
+    float: right;
+    margin-left: 0.3em;
+}
+
+.notification .date
+{
+    opacity: 0.5;
+}
+
+.notification > div
+{
+    color: #1a7893;
+    padding-top: 2%;
+}
+
+#notifications hr
+{
+    margin: 0;
+}
+
+.notification i
+{
+    opacity: 0.5;
+    position: absolute;
+    left: 2%;
+    top: 25%;
+}
+
+/* </notifications> */
+
+@media screen and (max-width: 767px)
+{
+    #menu-items
+    {
+        margin-bottom: 1%;
+        padding-left: 2%;
+        width: 100%;
+        text-align: center;
+    }
+
+    #left-bar
+    {
+        margin-bottom: 1%;
+        width: 100%;
+        padding-left: 0;
+        left: 0 !important;
+        text-align: center !important;
+    }
+
+    #search-bar
+    {
+        width: 35%;
+    }
+
+}
+
+@media screen and (max-width: 621px)
+{
+    #notifications
+    {
+        width: 400%;
+    }
+}
+
+@media screen and (max-width: 579px)
+{
+    #notifications
+    {
+        position: relative;
+        width: 100%;
+        border: none;
+    }
+
+    .notification
+    {
+        width: 81%;
+        height: 5.5em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #top-header
+    {
+        background-color: transparent;
+    }
+
+    #menu-items
+    {
+        display: none;
+        height: auto;
+    }
+
+    #menu-items ul li:not(.activated):hover
+    {
+        box-shadow: none;
+    }
+
+    #menu-items ul li
+    {
+        display: block;
+        background-color: #222222;
+        line-height: 2em;
+    }
+
+    #menu-items ul li a
+    {
+        top: 0;
+    }
+
+    #left-bar, #menu-items ul, #menu-show
+    {
+        display: block;
+    }
+
+    #search-bar
+    {
+        border-radius: 0.3em;
+        border: 1px solid #bbb;
+    }
+
+    #menu-items ul li.activated
+    {
+        background-color: #CB4D4D;
+    }
+
+    #left-bar button, #left-bar button:focus
+    {
+        outline: none;
+        color: #000000;
+        padding: 0 0.2em 0.1em 0;
+        background-color: transparent;
+    }
+
+    #left-bar button i
+    {
+        vertical-align: sub;
+    }
+}

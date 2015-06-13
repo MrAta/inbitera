@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>{{film.name}}</title>
+    <base href="http://127.0.0.1:8000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/header.css' %} "/>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/general.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/film_profile.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/star-rating.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/comments.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
+</head>
+<body>
+<script src="{% static 'js/resize_text.js' %}"></script>
+{% include 'header.html' %}
+<div id="film-cover" style="background-image: url('{{MEDIA_URL}}{{film.cover}}')">
+    <div class="col col-md-12 col-sm-12">
+        <div class="container">
+            <div class="star-rating fixed fixed-{{film.rate}}">
+                <span class="half-star left off"></span>
+                <span class="half-star right off"></span>
+                <span class="half-star left off"></span>
+                <span class="half-star right off"></span>
+                <span class="half-star left off"></span>
+                <span class="half-star right off"></span>
+                <span class="half-star left off"></span>
+                <span class="half-star right off"></span>
+                <span class="half-star left off"></span>
+                <span class="half-star right off"></span>
+            </div>
+            <a href="{{film.imdb_link}}"><img src="{% static 'img/IMDB.png' %}" id="imdb-link"/></a>
+            <div class="share-icons">
+                <i class="icon icon-2x icon-facebook-sign"></i>
+                <i class="icon icon-2x icon-twitter-sign"></i>
+                <i class="icon icon-2x icon-pinterest-sign"></i>
+                <i class="icon icon-2x icon-google-plus-sign"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-12 col-sm-12" id="cover-film-info">
+        <div class="container">
+            <section class="col col-md-5 col-sm-4" id="cover-film-synopsis">
+                <h3>خلاصه داستان:</h3>
+                <p>{{film.synopsis}}</p>
+            </section>
+            <section class="col col-md-2 col-sm-4" id="cover-film-details" >
+               <div class="col col-md-12 col-sm-12" id="cover-film-title">{{film.name}}</div>
+                <div>
+                    <span class="custom-small">به کارگردانی</span>
+                    <span id="director">{{film.director.name}}</span>
+                </div>
+                <div class="second-details">
+                    <span>{{film.country}}</span>
+                    <span>{{film.year}}</span>
+                </div>
+                <div class="third-details">
+                    <ul>
+                        <li><i class="icon icon-time"></i> {{film.duration}} دقیقه</li>
+                        <li><i class="icon icon-bullhorn"></i>{{film.language}}</li>
+                        <li><i class="icon icon-tags"></i>{{film.genre}}</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="col col-md-5 col-sm-4" id="cover-film-review">
+                <h3>نقد فیلم:</h3>
+                <p>
+                    {{film.review}}
+                </p>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% include 'sidebar.html' %}
+    <main id="film-profile" class="col col-md-6 col-sm-9 col-xs-8">
+        {% if request.user.is_authenticated and not already_posted %}
+            <section id="rating">
+            <header>
+                <h3>نظر شما درباره این فیلم ؟</h3>
+                <div class="star-rating" id="film_rate">
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                    <span class="half-star left off"></span>
+                    <span class="half-star right off"></span>
+                </div>
+                <textarea class="form-control" id="post-text" placeholder="چطور بود فیلم؟"></textarea>
+                <button type="button" class="btn btn-primary" film-id="{{ film.id }}">ثبت نظر</button>
+                <div class="warning">
+                    <span>امتیاز یادتون رفت !</span>
+                </div>
+            </header>
+        </section>
+        {% endif %}
+        <div id="full-details">
+            <ul class="nav nav-tabs">
+                <li>
+                    <a href="#review" data-toggle="tab"><i class="icon icon-quote-right"></i>نقد فیلم</a>
+                </li>
+                <li>
+                    <a href="#story" data-toggle="tab"><i class="icon icon-book"></i>داستان</a>
+                </li>
+                <li>
+                    <a href="#details" data-toggle="tab"><i class="icon icon-list-alt"></i>جزئیات</a>
+                </li>
+                <li>
+                    <a href="#cast-list" data-toggle="tab"><i class="icon icon-group"></i>هنرمندان</a>
+                </li>
+                <li class="active">
+                    <a href="#comments" data-toggle="tab"><i class="icon icon-comments"></i>نظرات (<span>{{ posts|length }}</span>)</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="review" class="tab-pane">
+                    <p>{{film.review}}</p>
+                </div>
+                <div id="story" class="tab-pane">
+                    <p>{{film.synopsis}}</p>
+                </div>
+                <div id="details" class="tab-pane">
+                    <table class="custom-table">
+                        <tbody>
+                            <tr>
+                                <th>کارگردان:</th>
+                                <td><a href="{{film.director.imdb_link}}">{{film.director.name}}</a></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {% if film.writers.all|length == 1 %}
+                                        نویسنده:
+                                    {% else %}
+                                        نویسندگان:
+                                    {% endif %}
+                                </th>
+                                <td>
+                                    {% for writer in film.writers.all %}
+                                        <a href="{{writer.imdb_link}}">{{writer.name}}</a>
+                                        {% if not forloop.last %}
+                                            ،
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>مدت زمان:</th>
+                                <td> {{film.duration}} دقیقه</td>
+                            </tr>
+                            <tr>
+                                <th>تاریخ انتشار:</th>
+                                <td>{{film.year}}</td>
+                            </tr>
+                            <tr>
+                                <th>زبان:</th>
+                                <td>{{film.language}}</td>
+                            </tr>
+                            {%for other in others%}
+                            <tr>
+                                <th>{{other.role}}</th>
+                                <td>{{other.agent.name}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                <div id="cast-list" class="tab-pane">
+                    {%for actor in actors%}
+                    <div class="cast">
+                        <img src="{{actor.agent.pic.url}}">
+                        <div>
+                            <div class="col col-md-6">
+                                <a href="{{actor.agent.imdb_link}}">{{actor.agent.name}}</a>
+                                <br/>
+                                <span class="light-black">در نقش</span>
+                                <span>{{actor.role}}</span>
+                            </div>
+                            <div class="col col-md-6">
+                                <span class="light-black">
+                                    در باره ی
+                                    {{actor.agent.name}}
+                                    :
+
+                                </span>
+                                <span>{{actor.agent.short_description}}</span>
+
+                            </div>
+                        </div>
+                    </div>
+                   {%endfor%}
+                </div>
+                <div id="comments" class="tab-pane active">
+                    <div class="col col-md-12 col-sm-12 col-xs-12 comment film-profile-comment editable" id="new-comment">
+                        <img src="{{ MEDIA_URL }}{{ request.user.user_image.pic }}" class="avatar img-circle"/>
+                        <a href="/user/{{ request.user.username }}"><span class="author">{{ request.user.first_name }} {{ request.user.last_name }}</span></a>
+                        <span class="light-black date"></span>
+                        <i class="icon icon-remove"></i>
+                        <br/>
+                        <div>
+                            <div class="star-rating fixed fixed-4.5 smaller">
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                            </div>
+                            <footer>
+                                <div class="likes">
+                                    <a href="#">
+                                        <i class="icon icon-heart"></i>
+                                        <span class="num-of-likes">0</span>
+                                        <span>بار</span>
+                                    </a>
+                                </div>
+                                <div class="show-comments">
+                                    <a href="#">
+                                        <i class="icon icon-comments"></i>
+                                        <span class="num-of-comments">0</span>
+                                        <span>نظر</span>
+                                    </a>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="comment-text"><i class="icon icon-quote-right"></i>
+                        </div>
+                        <div class="col col-md-12 col-sm-12 col-xs-12 comments">
+                            <div class="col col-md-12 col-sm-12 col-xs-12 comment your-comment">
+                                <img src="{{ MEDIA_URL }}" class="avatar img-circle"/>
+                                <input type="text" class="form-control" placeholder="دیدگاه شما چیست ؟">
+                                <button type="submit" class="btn btn-primary submit-comment">ثبت نظر</button>
+                            </div>
+                        </div>
+                    </div>
+                    {%for post in posts%}
+                    <div class="col col-md-12 col-sm-12 col-xs-12 comment film-profile-comment{% if request.user == post.author %} editable{% endif %}" post-id="{{post.id}}">
+                        <img src="{{ MEDIA_URL }}{{ post.author.user_image.pic }}" class="avatar img-circle"/>
+                        <a href="user/{{ post.author.username }}"><span class="author">{{post.author.first_name}} {{post.author.last_name}}</span></a>
+                        <span class="light-black date">{{post.pub_date}}</span>
+                        {% if post.author.username == request.user.username %}
+                            <i class="icon icon-remove"></i>
+                        {% endif %}
+                        <br/>
+                        <div>
+                            <div class="star-rating fixed fixed-4.5 smaller">
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                                <span class="half-star left off"></span>
+                                <span class="half-star right off"></span>
+                            </div>
+                            <footer>
+                                <div class="likes">
+                                    <a href="#">
+                                        <i class="icon
+                                        {% if request.user in post.liked_users.all %}
+                                            icon-heart-empty
+                                        {% else %}
+                                            icon-heart
+                                        {% endif %}
+                                        "></i>
+                                        <span class="num-of-likes">{{ post.liked_users.all | length }}</span>
+                                        <span>بار</span>
+                                    </a>
+                                </div>
+                                <div class="show-comments">
+                                    <a href="#">
+                                        <i class="icon icon-comments"></i>
+                                        <span class="num-of-comments">{{ post.comments.all | length }}</span>
+                                        <span>نظر</span>
+                                    </a>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="comment-text"><i class="icon icon-quote-right"></i>{{post.text}}</div>
+                        <div class="col col-md-12 col-sm-12 col-xs-12 comments">
+                            <div class="col col-md-12 col-sm-12 col-xs-12 comment your-comment">
+                                <img src="{{MEDIA_URL}}{{request.user.user_image.pic}}" class="avatar img-circle"/>
+                                <input type="text" class="form-control" placeholder="دیدگاه شما چیست ؟">
+                                <button type="submit" first-name='{{request.user.first_name}}'
+                                        last-name='{{request.user.last_name}}' class="btn btn-primary submit-comment">ثبت نظر</button>
+                            </div>
+                            {% for comment in post.comments.all %}
+                            <div class="col col-md-12 col-sm-12 col-xs-12 comment{% if request.user == comment.author %} editable{% endif %}" comment-id="{{comment.id}}">
+                                <img src="{{ MEDIA_URL }}{{ comment.author.user_image.pic }}" class="avatar img-circle"/>
+                                <a href="/user/{{ comment.author.username }}"><span class="author">{{ comment.author.first_name }} {{ comment.author.last_name }}</span></a>
+                                <span class="light-black date">{{ comment.pub_date }}</span>
+                                <footer>
+                                    <div class="likes">
+                                        <a href="#">
+                                            <i class="icon
+                                            {% if request.user in comment.liked_users.all %}
+                                                icon-heart-empty
+                                            {% else %}
+                                                icon-heart
+                                            {% endif %}
+                                            "></i>
+                                            <span class="num-of-likes">{{ comment.liked_users.all | length }}</span>
+                                            <span>بار</span>
+                                        </a>
+                                    </div>
+                                    {% if comment.author.username == request.user.username %}
+                                        <i class="icon icon-remove"></i>
+                                    {% endif %}
+                                </footer>
+                                <div class="comment-text">{{ comment.text }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <section class="related-films">
+            <header><h3>فیلم های مرتبط: </h3></header>
+            <div class="film-carousel">
+                {%for related_film in related_films%}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <img alt="کاور فیلم"  src="{{related_film.pic.url}}"/>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/film/{{related_film.id}}"><span class="film-title">{{related_film.name}}</span></a>
+                        <br/>
+                        <div class="star-rating fixed fixed-{{related_film.rate}}">
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                        </div>
+                    </div>
+                </div>
+             {%endfor%}
+            </div>
+        </section>
+    </main>
+    {% include 'sidebar.html' %}
+</div>
+<aside id="chat-side-bar">
+    <div id="users-list">
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/second_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">عباس تقوایی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/third_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">کامران فارابی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="{% static 'img/fourth_user.jpeg' %}" class="avatar img-circle"/>
+                <div class="user-status online"></div>
+                <div class="chat-user-name">حسین ضرابی</div>
+            </div>
+        </div>
+    </div>
+</aside>
+<footer id="footer">
+    <ul id="social">
+        <li><i class="icon icon-facebook-sign"></i></li>
+        <li><i class="icon icon-google-plus-sign"></i></li>
+        <li><i class="icon icon-flickr"></i></li>
+        <li><i class="icon icon-pinterest-sign"></i></li>
+        <li><i class="icon icon-twitter-sign"></i></li>
+        <li><i class="icon icon-tumblr-sign"></i></li>
+        <li><i class="icon icon-dribbble"></i></li>
+    </ul>
+    <ul id="footer-links">
+        <li><i class="icon icon-phone-sign"></i><span>تماس با ما</span></li>
+        <li><i class="icon icon-info-sign"></i><span>درباره ما</span></li>
+        <li><i class="icon icon-shield"></i><span>قوانین</span></li>
+        <li><i class="icon icon-map-marker"></i><span>نقشه سایت</span></li>
+        <li><i class="icon icon-eye-close"></i><span>حریم شخصی</span></li>
+    </ul>
+</footer>
+<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/general.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/comments.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/film_profile.js' %}"></script>
+<script src="{% static 'js/star-rating.js' %}"></script>
+<script src="{% static 'js/edit-comment-post.js' %}"></script>
+<script src="{% static 'js/chat.js' %}"></script>
+</body>
+</html>

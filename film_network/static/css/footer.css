@@ -1,0 +1,44 @@
+#footer
+{
+    opacity: 0.8;
+    background-color: #42788A;
+    margin-top: 1em;
+    color: #ffffff;
+}
+
+#footer:hover
+{
+    opacity: 1;
+}
+
+#footer ul
+{
+    text-align: center;
+    font-family: 'BYekan', sans-serif;
+    margin-bottom: 0;
+}
+
+#footer ul li
+{
+    color: #030303;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#footer-links
+{
+    padding-bottom: 0.8em;
+    font-size: 0.8em;
+}
+
+#social
+{
+    padding-top: 1em;
+    font-size: 1.5em;
+}
+
+#footer-links li
+{
+    font-size: 1.2em;
+    margin: 0.1em;
+}

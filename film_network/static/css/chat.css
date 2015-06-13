@@ -1,0 +1,218 @@
+#chat-side-bar
+{
+    width: 7.3%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+#users-list
+{
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 0;
+    text-align: left;
+}
+
+.chat-user
+{
+    margin: 0.3em 0;
+    transition: all 0.2s;
+    direction: ltr;
+}
+
+.chat-user-container
+{
+    position: relative;
+    width: 2.4em;
+    display: inline-block;
+    background-color: #dcdcdc;
+    border-radius: 10em;
+    transition: none;
+}
+
+.chat-user img
+{
+    width: 2.4em;
+    height: 2.4em;
+    display: inline-block;
+    opacity: 0.75;
+}
+
+.chat-user img:hover
+{
+    cursor: pointer;
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.chat-user .chat-user-name
+{
+    vertical-align: middle;
+    height: 100%;
+    transition: opacity 1s;
+    display: none;
+    text-align: center;
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.7em;
+}
+
+.chat-user .chat-user-name.visible
+{
+    display: inline-block;
+}
+
+.chat-user .user-status
+{
+    position: absolute;
+    top: 1.7em;
+    left: 2em;
+    transition: none;
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 0.3em;
+    background-color: #06d9df;
+    box-shadow: 0 0 0.2em 0.1em #06d9df;
+    display: none;
+}
+
+.chat-user .user-status.online
+{
+    display: inline-block;
+}
+
+#dialog-boxes
+{
+    position: fixed;
+    bottom: 0;
+    left: 8.3%;
+    z-index: 10;
+}
+
+.chat-box
+{
+    background-color: #ffffff;
+    margin-right: 1em;
+    width: 13em;
+    transition: none;
+    border: 1px solid #ccc;
+    box-shadow: 0 0.1em 1em rgba(0,0,0,.2);
+    height: 18em;
+    position: relative;
+    float: left;
+    border-radius: 0.3em;
+}
+
+.chat-box .title
+{
+    height: 13%;
+    opacity: 0.8;
+    border-radius: 0.2em;
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 0.8em 0.5em;
+    background-color: #1C5D72;
+    position: relative;
+}
+
+.chat-box .title i
+{
+    position: relative;
+    float: left;
+    top: 0.1em;
+}
+
+.chat-box .title:hover
+{
+    box-shadow: inset 0.3em 0 0 0 #ca0000;
+    opacity: 1;
+}
+
+.chat-box textarea
+{
+    overflow: hidden;
+    border-radius: 0.2em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.5em;
+    resize: none;
+}
+
+.dialog-content
+{
+    height: 70%;
+    overflow: auto;
+}
+
+.dialog-text
+{
+    position: relative;
+    clear: both;
+    max-width: 100%;
+}
+
+.dialog-text .text
+{
+    max-width: 100%;
+    display: inline-block;
+    margin: 0.9em 1.1em 0 1em;
+    padding: 0.1em 0.4em;
+    border-radius: 0.4em;
+    background-color: #CFE2FE;
+}
+
+.dialog-text.left
+{
+    direction: ltr;
+    left: 0;
+}
+
+.dialog-text.left img
+{
+    vertical-align: top;
+    margin: 0.9em 0 0 0.5em;
+    width: 1.9em;
+    height: 1.9em;
+    border-radius: 50%;
+}
+
+.dialog-text.left .text
+{
+    margin: 0.9em 0 0 0.2em;
+    display: inline-block;
+    max-width: 80%;
+}
+
+.dialog-text.right:before
+{
+    position: absolute;
+    right: 0.6em;
+    top: 1.35em;
+    width: 0;
+    height: 0;
+    border-top: 0.3em solid transparent;
+    border-left: 0.6em solid #CFE2FE;
+    border-bottom: 0.3em solid transparent;
+    content: '';
+    display: inline-block;
+}
+
+.dialog-text.left:before
+{
+    position: absolute;
+    left: 2.3em;
+    top: 1.35em;
+    width: 0;
+    height: 0;
+    border-top: 0.3em solid transparent;
+    border-right: 0.6em solid #CFE2FE;
+    border-bottom: 0.3em solid transparent;
+    content: '';
+    display: inline-block;
+}

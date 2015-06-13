@@ -1,0 +1,62 @@
+#search-results
+{
+    text-align: right;
+    display: none;
+    transition: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: #2D2F2F;
+    color: #dddddd;
+    border-radius: 0.5em;
+}
+
+.search-res
+{
+    height: 4em;
+    padding: 0.15em 0.5em;
+}
+
+.search-res:first-child
+{
+    padding-top: 0.3em;
+}
+
+.search-res:hover
+{
+    cursor: pointer;
+    border-radius: 0.3em;
+    color: #000000;
+    background-color: #dddddd;
+}
+
+.search-res:last-child
+{
+    border-bottom: none;
+}
+
+.search-res img
+{
+    float: right;
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: 0.3em;
+    border-radius: 50%;
+}
+
+.search-name
+{
+    padding-top: 0.4em;
+    display: inline-block;
+    font-family: 'BYekan', sans-serif;
+}
+
+#search-type
+{
+    transition: none;
+    position: absolute;
+    bottom: 55%;
+    transform: translate(0 , 50%);
+    left: 0;
+    font-size: 1.5em;
+}

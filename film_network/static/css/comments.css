@@ -1,0 +1,151 @@
+.comments
+{
+    display: none;
+    transition: none;
+    padding: 0.8em 0;
+    position: relative;
+    border-bottom: solid 1px #EEEEEE;
+}
+
+.comment
+{
+    transition: none;
+    padding-bottom: 0.8em;
+}
+
+.comment:not(.film-profile-comment) .icon-remove
+{
+    margin-right: 0.5em;
+    position: relative;
+    top: 0;
+}
+
+.comment.editable .comment-text textarea
+{
+    width: 100%;
+    background-color: inherit;
+    resize: vertical;
+}
+
+.comment.editable .comment-text textarea,
+.comment.editable .comment-text textarea:focus
+{
+    border: none;
+    outline: none;
+}
+
+.comment.your-comment input[type='text']
+{
+    position: relative;
+    top: 0.8em;
+    display: inline-block;
+    width: 73%;
+    margin-right: 0.2em;
+    margin-bottom: 0.8em;
+    height: 2.2em;
+}
+
+.comment.your-comment button
+{
+    position: relative;
+    top: 0.55em;
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    padding: 0.4em 0.7em;
+    vertical-align: sub;
+}
+
+.comment:last-child
+{
+    border-bottom: transparent;
+}
+
+.comment img
+{
+    float: right;
+}
+
+.comment .date
+{
+    white-space: pre;
+    margin-right: 0.2em;
+    font-family: 'BYekan', sans-serif;
+    font-size: 70%;
+    opacity: 0.5;
+    position: relative;
+    top: 0.5em;
+}
+
+.comment footer .likes
+{
+    padding-top: 0.7em;
+}
+
+.comment .author
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    padding-right: 1%;
+    position: relative;
+    top: 0.5em;
+}
+
+.comment-text
+{
+    margin-top: 0.4em;
+    text-indent: 0.2em;
+    text-align: justify;
+}
+
+.comment footer
+{
+    float: left;
+    display: inline-block;
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+}
+
+.comment footer > div
+{
+    display: inline-block;
+}
+
+.comment footer a
+{
+    color: #b2b0b5;
+}
+
+.comment footer a span
+{
+    transition: all 0s;
+}
+
+.comment footer a:hover
+{
+    color: #222222;
+}
+
+.comment footer i
+{
+    color: #124B5E;
+    opacity: 0.7;
+    font-size: 1em;
+}
+
+@media all and (max-width: 785px){
+
+    .comment.your-comment input[type='text']
+    {
+        width: 50%;
+    }
+
+}
+
+@media all and (max-width: 463px){
+
+    .comment.your-comment input[type='text']
+    {
+        width: 40%;
+    }
+
+}

@@ -1,0 +1,46 @@
+body > .container
+{
+    padding-top: 3.4em;
+}
+
+body > .container > main
+{
+    padding-right: 0;
+    padding-left: 1%;
+}
+
+.post .author .image
+{
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+.post .author .name
+{
+    transition: none;
+    display: none;
+    margin-bottom: 0.3em;
+    font-family: 'BYekan', sans-serif;
+    text-align: center;
+}
+
+.post .author .name span
+{
+    color: #9e9e9e;
+}
+
+.post .author .name span:hover
+{
+    color: #124B5E;
+}
+
+.post .post-text .author .image
+{
+    position: relative;
+    float: left;
+}
+
+.post:first-child
+{
+    margin-top: 0;
+}

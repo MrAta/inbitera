@@ -1,0 +1,328 @@
+.carousel-container
+{
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    direction: rtl;
+}
+
+.carousel-container .container
+{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.carousel-container .star-rating
+{
+    padding-right: 4.5%;
+    margin-top: 1em;
+}
+
+.cover-film-info
+{
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+.cover-film-info .container
+{
+    padding-right: 1%;
+    padding-left: 1%;
+    text-align: center;
+    color: #ffffff;
+    height: 100%;
+}
+
+.custom-small
+{
+    font-size: 1em;
+}
+
+.director
+{
+    font-size: 1.2em;
+    font-family: 'BYekan', sans-serif;
+}
+
+.imdb-link
+{
+    background-size: 100%;
+    display: inline-block;
+    top: 0.7em;
+    position: relative;
+    height: 3em;
+    width: 3em;
+}
+
+.cover-film-title
+{
+    color: #ffffff;
+    font-size: 180%;
+    font-family: 'BYekan', sans-serif;
+}
+
+.cover-film-details
+{
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.cover-film-details .third-details
+{
+    opacity: 0.6;
+}
+
+.cover-film-details .second-details
+{
+    font-size: 1.4em;
+}
+
+.cover-film-synopsis, .cover-film-review
+{
+    padding-right: 4%;
+    padding-left: 4%;
+}
+
+.cover-film-details, .cover-film-synopsis, .cover-film-review
+{
+    float: right;
+}
+
+.cover-film-synopsis h3, .cover-film-review h3
+{
+    font-size: 1.2em;
+    font-family: 'BYekan', sans-serif;
+}
+
+.share-icons
+{
+    padding-left: 4%;
+    float: left;
+    margin-top: 1em;
+}
+
+.share-icons i
+{
+    color: #ffffff;
+    transition: all 0.5s;
+}
+
+.share-icons i:hover
+{
+    cursor: pointer;
+    color: #204d74;
+}
+
+.search-res img
+{
+    vertical-align: middle;
+}
+
+.datepicker:after
+{
+    right: 0.5em;
+    left: auto !important;
+}
+
+.datepicker:before
+{
+    right: 0.41em;
+    left: auto !important;
+}
+
+#film-carousel
+{
+    height: 100vh;
+    width: 100vw;
+    direction: ltr;
+}
+
+#film-carousel img
+{
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.slick-slider
+{
+    margin-bottom: 0 !important;
+}
+
+[dir='rtl'] .slick-prev
+{
+    right: 15px !important;
+}
+
+[dir='rtl'] .slick-next
+{
+    left: 15px !important;
+}
+
+#top-header .container
+{
+    padding-right: 4% !important;
+    padding-left: 4%;
+    margin-left: auto;
+    margin-right: auto !important;
+}
+
+#left-bar
+{
+    left: 1%;
+    font-size: 80%;
+}
+
+#left-bar input
+{
+    height: 2em;
+    font-family: 'BYekan', sans-serif;
+}
+
+/* <login-form> */
+
+.panel
+{
+    margin-bottom: 0;
+}
+
+.panel-body
+{
+    padding: 0.5em 1em 0;
+}
+
+#login-form
+{
+    transition: none;
+    display: none;
+    border-radius: 0.4em;
+    background-color: #ffffff;
+    position: fixed;
+    width: 25em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-form .panel
+{
+    border: none;
+}
+
+/* </login-form> */
+
+/* <registration-form> */
+
+#registration-form
+{
+    transition: none;
+    display: none;
+    border-radius: 0.4em;
+    background-color: #ffffff;
+    position: fixed;
+    width: 25em;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#registration-form .panel
+{
+    border: none;
+}
+
+/* </registration-form> */
+
+/* <recovery-form> */
+
+#recovery-form
+{
+    transition: none;
+    display: none;
+    border-radius: 0.4em;
+    background-color: #ffffff;
+    position: fixed;
+    width: 25em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#recovery-form .panel
+{
+    border: none;
+}
+
+/* </recovery-form> */
+
+#btn-login, #register-link, #pass-recover, #login-link, #btn-register, #login-recover, #btn-recovery
+{
+    font-family: 'BYekan', sans-serif;
+}
+
+#pass-recover, #register-link, #login-link, #login-recover
+{
+    font-size: 0.8em;
+}
+
+input.form-control
+{
+    float: right !important;
+}
+
+.hint
+{
+    position: relative;
+    padding: 0.2em 0.8em;
+    margin: 0.2em 3.9em 0.8em 0.3em;
+    background-color: rgb(189, 63, 63);
+    border-radius: 0.5em;
+    color: #fff;
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.85em;
+    transition: none;
+    display: inline-block;
+    opacity: 0;
+}
+
+.hint:before
+{
+    width: 0;
+    height: 0;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-bottom: 1em solid rgb(189, 63, 63);
+    position: absolute;
+    top: -0.5em;
+    right: 1em;
+    content: '';
+    display: inline;
+}
+
+.input-group .form-control
+{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0.5em !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0.5em !important;
+}
+
+.input-group-addon
+{
+    border-right: 1px solid #ccc !important;
+    border-left: 0;
+    border-radius: 0 0.5em 0.5em 0 !important;
+}
+
+.mb5 {
+    margin-bottom: 0.4em;
+    width: 100%;
+    border-radius: 0.4em;
+}

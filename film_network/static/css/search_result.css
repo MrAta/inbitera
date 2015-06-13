@@ -1,0 +1,159 @@
+#results-section section header
+{
+    text-align: center;
+    font-family: 'BYekan', sans-serif;
+}
+.nav-tabs
+{
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.nav-tabs > li
+{
+    font-family: 'BYekan', sans-serif;
+    margin-top: 2%;
+    float: none;
+    display: inline-block;
+}
+
+.nav-tabs > li > a
+{
+    margin-right: 0.5em;
+    border: 1px solid #ddd;
+    padding: 0.5em 1em 0.4em;
+    background-color: #eee;
+}
+
+.nav-tabs > li > a:hover
+{
+    background-color: #F8F8F8;
+}
+
+#result-tabs
+{
+    overflow: hidden;
+    border-width: 1px 1px 0 1px;
+}
+
+.single-film
+{
+    position: relative;
+    padding: 0.5em 0.2em 0 0.1em;
+}
+
+.single-film img
+{
+    opacity: 0.9;
+}
+
+.single-film:hover img
+{
+    opacity: 0.2;
+}
+
+.single-film:hover h1,
+.single-film:hover h3
+{
+    opacity: 1;
+}
+
+.single-film h1
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 1.7em;
+    color: #4c4c4c;
+    top: 10%;
+    right: 7%;
+    position: absolute;
+    opacity: 0;
+}
+
+.single-film h3
+{
+    font-size: 1.2em;
+    color: #4c4c4c;
+    top: 33%;
+    right: 8%;
+    position: absolute;
+    opacity: 0;
+}
+
+.single-film .star-rating.smaller
+{
+    position: absolute;
+    bottom: 6%;
+    left: 3%;
+    transform-origin: 0 100%;
+}
+
+.single-user, .single-film
+{
+    float: right;
+}
+
+.single-user
+{
+    padding: 0;
+    text-align: center;
+}
+
+.single-user > div
+{
+    padding: 0.3em;
+}
+
+.single-user > div > div
+{
+    padding: 1em;
+    border-radius: 0.8em;
+    background-color: #EAEAEA;
+}
+
+.single-user a img
+{
+    border-radius: 50%;
+}
+
+.single-user .user-full-name
+{
+    margin-top: 0.3em;
+    font-family: 'BYekan', sans-serif;
+}
+
+.single-user hr
+{
+    border-top-color: #ffffff;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.single-user p
+{
+    color: #888888;
+}
+
+.single-user button
+{
+    font-family: 'BYekan', sans-serif;
+    border-radius: 1.5em;
+    width: 100%;
+}
+
+.follow-btn
+{
+    font-family: 'BYekan', sans-serif;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+}
+
+.follow-btn.clicked, .btn:focus
+{
+    background-color: #5E2438;
+    outline: none;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active
+{
+    color: #ffffff;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>نتایج جستجو</title>
+    {% load staticfiles %}
+    <base href="http://127.0.0.1:8000/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/css/general.css"/>
+    <link rel="stylesheet" href="static/css/header.css"/>
+    <link rel="stylesheet" href="static/css/font.css"/>
+    <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="static/css/star-rating.css"/>
+    <link rel="stylesheet" href="static/css/sidebar.css"/>
+    <link rel="stylesheet" href="static/css/comments.css"/>
+    <link rel="stylesheet" href="static/css/chat.css"/>
+    <link rel="stylesheet" href="static/css/search_result.css"/>
+    <link rel="stylesheet" href="static/css/search.css"/>
+    <link rel="stylesheet" href="static/css/footer.css"/>
+</head>
+<body>
+<script src="static/js/resize_text.js"></script>
+{% include 'header.html' %}
+<div class="container">
+    {% include 'sidebar.html' %}
+    <main id="results-section" class="col col-md-6 col-sm-9 col-xs-8">
+        <section>
+            <header>
+                <h3>نتایج <i class="icon icon-search"></i>:</h3>
+            </header>
+        </section>
+        <div id="result-tabs">
+            <ul class="nav nav-tabs">
+                {% if users %}
+                    <li class="active">
+                        <a href="#user-list" data-toggle="tab"><i class="icon icon-group"></i>کاربران</a>
+                    </li>
+                {% else %}
+                    <li class="active">
+                        <a href="#films" data-toggle="tab"><i class="icon icon-film"></i>فیلم ها</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="tab-content">
+                {% if users %}
+                <div id="user-list" class="tab-pane active">
+                    {% for user in users %}
+                        <div class="col col-md-3 col-sm-3 col-xs-6 single-user">
+                        <div>
+                            <div>
+                                <a href="/user/{{user.username}}"><img src="{{MEDIA_URL}}{{user.user_image.pic}}"/></a>
+                                <div class="user-full-name">{{user.first_name}} {{user.last_name}}</div>
+                                <hr/>
+                                <p>{{user.description}}</p>
+                                {% if request.user.is_authenticated %}
+                                    <button type="button" class="btn btn-default follow-btn" user-id="{{user.id}}">
+                                        {% if user in request.user.following.all %}
+                                            <i class="icon icon-unlink"></i>
+                                            <span>لغو دنبال کردن</span>
+                                        {% else %}
+                                            <i class="icon icon-link"></i>
+                                            <span>دنبال کردن</span>
+                                        {% endif %}
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div id="films" class="tab-pane active">
+                    {% for film in films %}
+                        <div class="col col-md-4 col-sm-4 col-xs-12 single-film">
+                        <img src="{{MEDIA_URL}}{{film.cover}}"/>
+                        <h1 class="film-title"><a href="/film/{{film.id}}">{{film.name}}</a></h1>
+                        <h3 class="film-info">{{film.director}}، {{film.year}}</h3>
+                        <div class="star-rating fixed fixed-{{film.rate}} smaller">
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                            <span class="half-star left off"></span>
+                            <span class="half-star right off"></span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    {% include 'sidebar.html' %}
+    <div id="dialog-boxes">
+        <div class="chat-box">
+            <div class="title">
+                <i class="icon icon-remove"></i>محمد پناه آذری
+            </div>
+            <div class="dialog-content">
+                <div class="dialog-text right">
+                    <div class="text">سلام، خوبی؟</div>
+                </div>
+                <div class="dialog-text left">
+                    <img src="static/img/second_user.jpeg"/>
+                    <div class="text">ممنون ، تو خوبی ؟</div>
+                </div>
+            </div>
+            <textarea rows="1"></textarea>
+        </div>
+    </div>
+</div>
+<aside id="chat-side-bar">
+    <div id="users-list">
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="static/img/second_user.jpeg" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">عباس تقوایی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="static/img/third_user.jpeg" class="avatar img-circle"/>
+                <div class="user-status"></div>
+                <div class="chat-user-name">کامران فارابی</div>
+            </div>
+        </div>
+        <div class="chat-user">
+            <div class="chat-user-container">
+                <img src="static/img/fourth_user.jpeg" class="avatar img-circle"/>
+                <div class="user-status online"></div>
+                <div class="chat-user-name">حسین ضرابی</div>
+            </div>
+        </div>
+    </div>
+</aside>
+<footer id="footer">
+    <ul id="social">
+        <li><i class="icon icon-facebook-sign"></i></li>
+        <li><i class="icon icon-google-plus-sign"></i></li>
+        <li><i class="icon icon-flickr"></i></li>
+        <li><i class="icon icon-pinterest-sign"></i></li>
+        <li><i class="icon icon-twitter-sign"></i></li>
+        <li><i class="icon icon-tumblr-sign"></i></li>
+        <li><i class="icon icon-dribbble"></i></li>
+    </ul>
+    <ul id="footer-links">
+        <li><i class="icon icon-phone-sign"></i><span>تماس با ما</span></li>
+        <li><i class="icon icon-info-sign"></i><span>درباره ما</span></li>
+        <li><i class="icon icon-shield"></i><span>قوانین</span></li>
+        <li><i class="icon icon-map-marker"></i><span>نقشه سایت</span></li>
+        <li><i class="icon icon-eye-close"></i><span>حریم شخصی</span></li>
+    </ul>
+</footer>
+<script src="static/js/jquery-1.11.2.min.js"></script>
+<script src="static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/header.js"></script>
+<script src="static/js/comments.js"></script>
+<script src="static/js/star-rating.js"></script>
+<script src="static/js/general.js"></script>
+<script src="static/js/chat.js"></script>
+<script src="static/js/search.js"></script>
+<script>
+    if(window.innerWidth < 991){
+        var left_side_bar = $('body > .container > aside:first-of-type');
+        var right_side_bar = $('body > .container > aside:last-of-type');
+        var right_side_bar_sections = right_side_bar.find('section.panel');
+        right_side_bar_sections.each(function () {
+            $(this).detach();
+            left_side_bar.append($(this));
+        });
+        right_side_bar.remove();
+    }
+    if(window.innerWidth < 768) {
+        var left_side_bar = $('body > .container > aside:first-of-type');
+        left_side_bar.detach();
+        $('body > .container').append(left_side_bar);
+    }
+    if(window.innerWidth < 580){
+        $('body > .container > aside').removeClass('col-xs-4').addClass('col-xs-12');
+        $('body > .container > main').removeClass('col-xs-8').addClass('col-xs-12');
+    }
+    if(window.innerWidth < 401){
+
+    }
+    $('.follow-btn').on('click', function () {
+        if($(this).hasClass('clicked')){
+            $(this).removeClass('clicked').find('span').html("دنبال کردن")
+                    .end()
+                    .find('.icon').removeClass('icon-unlink').addClass('icon-link');
+        }
+        else{
+            $(this).addClass('clicked').find('span').html("لغو دنبال کردن")
+                    .end()
+                    .find('.icon').removeClass('icon-link').addClass('icon-unlink');
+        }
+    });
+</script>
+</body>
+</html>

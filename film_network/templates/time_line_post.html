@@ -1,0 +1,117 @@
+{% load staticfiles %}
+{% load users_filters %}
+{%for post in posts%}
+    <article class="col col-md-12 col-sm-12 col-xs-12 post" post-id="{{post.id}}">
+        <aside class="col col-md-1 col-sm-1 col-xs-3">
+            <div class="author">
+            <div class="image">
+                <img src="{{ MEDIA_URL }}{{ post.author.user_image.pic }}"/>
+            </div>
+            <div class="name">
+                <a href="/user/{{post.author.username}}"><span>@{{ post.author.first_name }}</span></a>
+            </div>
+            </div>
+            <div class="date">
+                <span class="day">{{ post.pub_date|split:' '|indexer:0 }}</span>
+                <br/>
+                <span class="month">{{ post.pub_date|split:' '|indexer:1 }}</span>
+                <br/>
+                <span class="year">{{ post.pub_date|split:' '|indexer:2 }}</span>
+            </div>
+        </aside>
+        <div class="col col-md-11 col-sm-11 col-xs-9 post-content">
+            <div class="col col-md-3 col-sm-3 col-xs-12 post-image-info">
+                <div class="post-image" style="background-image: url('{{MEDIA_URL}}{{post.film.pic}}')"></div>
+                <div class="hover-film-info">
+                    <h3 class="col col-md-12"><a href="film/{{post.film.id}}">{{post.film.name}}</a></h3>
+                    <h4 class="col col-md-12">{{post.film.director}}، {{post.film.year}}</h4>
+                    <h5 class="col col-md-12">محصول {{post.film.country}}</h5>
+                    <div class="star-rating fixed fixed-{{post.film.rate}} smaller">
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-9 col-sm-9 col-xs-12 post-text">
+                <p><i class="icon icon-quote-right"></i>{{post.text}}</p>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 post-footer">
+                <footer>
+                    <div class="likes">
+                        <a href="#">
+                            {% if request.user in post.liked_users.all %}
+                                <i class="icon icon-heart-empty"></i>
+                            {% else %}
+                                <i class="icon icon-heart"></i>
+                            {% endif %}
+                            <span class="num-of-likes">{{post.liked_users.all | length}}</span>
+                            <span>بار</span>
+                        </a>
+                    </div>
+                    <div class="show-comments">
+                        <a href="#">
+                            <i class="icon icon-comments"></i>
+                            <span class="num-of-comments">{{post.comments.all | length}}</span>
+                            <span>نظر</span>
+                        </a>
+                    </div>
+                    <div class="star-rating fixed fixed-{{post.rate}}">
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                        <div class="half-star left off"></div>
+                        <div class="half-star right off"></div>
+                    </div>
+                </footer>
+            </div>
+            <div class="col col-md-12 col-sm-12 col-xs-12 comments">
+                    <div class="col col-md-12 col-sm-12 col-xs-12 comment your-comment">
+                        <img src="{{MEDIA_URL}}{{request.user.user_image.pic}}" class="avatar img-circle"/>
+                        <input type="text" class="form-control" placeholder="دیدگاه شما چیست ؟">
+                        <button type="submit" first-name='{{request.user.first_name}}'
+                                last-name='{{request.user.last_name}}' class="btn btn-primary submit-comment">ثبت نظر</button>
+                    </div>
+                    {% for comment in post.comments.all %}
+                    <div class="col col-md-12 col-sm-12 col-xs-12 comment{% if request.user == comment.author %} editable{% endif %}" comment-id="{{comment.id}}">
+                        <img src="{{ MEDIA_URL }}{{ comment.author.user_image.pic }}" class="avatar img-circle"/>
+                        <a href="/user/{{ comment.author.username }}"><span class="author">{{ comment.author.first_name }} {{ comment.author.last_name }}</span></a>
+                        <span class="light-black date">{{ comment.pub_date }}</span>
+                        <footer>
+                            <div class="likes">
+                                <a href="#">
+                                    <i class="icon
+                                    {% if request.user in comment.liked_users.all %}
+                                        icon-heart-empty
+                                    {% else %}
+                                        icon-heart
+                                    {% endif %}
+                                    "></i>
+                                    <span class="num-of-likes">{{ comment.liked_users.all | length }}</span>
+                                    <span>بار</span>
+                                </a>
+                            </div>
+                            {% if comment.author.username == request.user.username %}
+                                <i class="icon icon-remove"></i>
+                            {% endif %}
+                        </footer>
+                        <div class="comment-text">{{ comment.text }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            <div class="rating-number">{{post.rate|multiply:2}}</div>
+        </div>
+    </article>
+{%endfor%}
