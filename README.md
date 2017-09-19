@@ -1,10 +1,10 @@
 <h2>description:</h2>
-wow! finally me and mehran (special thank to dear mehran for his great work on this project) finished this cery cool project.
-ok. lets describe project:
-in fact this projects is social network which users are allowed to post(or maybe tweet :|) about films which provided for them. yes!films are provided in this social network and each film has a profile page contains film info such as: cover, imdb link , director , writer , actors, synopsis, review and so on. now user can write his post about a film in its profile page. then this post will apear in user profile page and also user followers time line!
+wow! finally me and mehran (special thank to dear mehran for his great work on this project) finished this very cool project.
+Lets describe project:
+in fact this projects is a social network in which users are allowed to post(or maybe tweet :|) about films which provided for them. yes! films are provided in this social network and each film has a profile page contains film info such as: cover, imdb link , director , writer , actors, synopsis, review and so on. now user can write his post about a film in its profile page. then this post will apear in user profile page and also users followers time line!
 like most common social networks these features are available: follow or unfollow users , comment on a post , like or dislike posts and comments.
 <h2>Impelementaion:</h2>
-technically we wrote this web application in <a href="https://www.djangoproject.com/">python django web framework</a>.
+Technically we implemented this web application in <a href="https://www.djangoproject.com/">python django web framework</a>.
 as repository file structure shows our web application has belwo apps:
 <ul>
 <li>
@@ -29,16 +29,15 @@ users : user management app.
 film_networks : the last app which manage all other apps functionality! to works together properly.
 </li>
 </ul>
-we hope webcourse TAs like this project and give us fullmark!(En sha'a allah).
-as soon as mehran find free time he will deploy project to access his country people to this project and have fun in this cool social network.
-and its address will be : <a href="http://inbitera.com">http://inbitera.com</a>
+As soon as mehran finds free time he will deploy the project to access his country people to this project and have fun in this cool social network.
+And its address will be : <a href="http://inbitera.com">http://inbitera.com</a>
 <h2>Contact:</h2>
 <i>for more information please dont hesistate to contact us!</i>
 <ul> 
 <li>
-<strong>Ata:</strong> afbcesh91@gmail.com
+<strong>Ata:</strong> immrata@gmail.com
 </li>
 <li>
-<strong>Meran:</strong> mehrantorki95@gmail.com
+<strong>Mehran:</strong> mehrantorki95@gmail.com
 </li>
 </ul>
